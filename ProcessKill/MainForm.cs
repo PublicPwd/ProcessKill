@@ -66,7 +66,7 @@ namespace ProcessKill
             List<string> list = new List<string>();
             foreach (Process process in this.processes)
             {
-                if (process.ProcessName.Length > length && process.ProcessName.Substring(0, length).ToUpper().Equals(str))
+                if (process.ProcessName.Length >= length && process.ProcessName.Substring(0, length).ToUpper().Equals(str))
                 {
                     list.Add(process.ProcessName);
                 }
