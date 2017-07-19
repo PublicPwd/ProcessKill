@@ -22,7 +22,7 @@ namespace ProcessKill
 
         private void KillProcess()
         {
-            if (listBox_Processes.Items.Count == 0)
+            if (listBox_Processes.Items.Count == 0 || Process.GetCurrentProcess().ProcessName == this.listBox_Processes.SelectedItem.ToString())
             {
                 return;
             }

@@ -96,15 +96,15 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.button_Refrsh, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.button_Kill, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 241);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(286, 29);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
@@ -114,7 +114,7 @@
             this.button_Refrsh.Location = new System.Drawing.Point(0, 0);
             this.button_Refrsh.Margin = new System.Windows.Forms.Padding(0);
             this.button_Refrsh.Name = "button_Refrsh";
-            this.button_Refrsh.Size = new System.Drawing.Size(143, 29);
+            this.button_Refrsh.Size = new System.Drawing.Size(57, 29);
             this.button_Refrsh.TabIndex = 0;
             this.button_Refrsh.Text = "Refresh";
             this.button_Refrsh.UseVisualStyleBackColor = true;
@@ -123,10 +123,10 @@
             // button_Kill
             // 
             this.button_Kill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_Kill.Location = new System.Drawing.Point(143, 0);
+            this.button_Kill.Location = new System.Drawing.Point(57, 0);
             this.button_Kill.Margin = new System.Windows.Forms.Padding(0);
             this.button_Kill.Name = "button_Kill";
-            this.button_Kill.Size = new System.Drawing.Size(143, 29);
+            this.button_Kill.Size = new System.Drawing.Size(229, 29);
             this.button_Kill.TabIndex = 1;
             this.button_Kill.Text = "Kill";
             this.button_Kill.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ProcessKill";
+            this.Text = "Process Kill";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
