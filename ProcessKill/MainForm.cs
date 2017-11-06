@@ -101,5 +101,13 @@ namespace ProcessKill
         {
             this.AutoFilter();
         }
+
+        private void button_Suspend_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_SuspendedWindow form_SuspendedWindow = new Form_SuspendedWindow();
+            form_SuspendedWindow.ShowDialog();
+            this.Show();
+        }
     }
 }
