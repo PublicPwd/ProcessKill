@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,24 +16,24 @@ namespace ProcessKill
 
         private void FetchAllProcesses()
         {
-            this.processes = Process.GetProcesses();
+            processes = Process.GetProcesses();
         }
 
         private void KillProcess()
         {
-            if (listBox_Processes.Items.Count == 0 || Process.GetCurrentProcess().ProcessName == this.listBox_Processes.SelectedItem.ToString())
+            if (ListBox_Processes.Items.Count == 0 || Process.GetCurrentProcess().ProcessName == ListBox_Processes.SelectedItem.ToString())
             {
                 return;
             }
             try
             {
-                foreach (Process process in this.processes)
+                processes.ToList().ForEach(p =>
                 {
-                    if (process.ProcessName.Equals(listBox_Processes.SelectedItem.ToString()))
+                    if (p.ProcessName == ListBox_Processes.SelectedItem.ToString())
                     {
-                        process.Kill();
+                        p.Kill();
                     }
-                }
+                });
             }
             catch (Exception ex)
             {
@@ -44,70 +43,60 @@ namespace ProcessKill
 
         private void AddContentToListBox()
         {
-            List<string> list = new List<string>();
-            foreach (Process process in this.processes)
-            {
-                list.Add(process.ProcessName);
-            }
-            list = list.Distinct().ToList();
+            var process = from p in processes
+                          select p.ProcessName;
+            var list = process.Distinct().ToList();
             list.Sort();
-            listBox_Processes.DataSource = list;
+            ListBox_Processes.DataSource = list;
         }
 
         private void AutoFilter()
         {
-            string str = textBox_Search.Text.ToUpper();
-            int length = textBox_Search.Text.Length;
-            if (length == 0)
+            if (TextBox_Search.Text.Length == 0)
             {
-                this.AddContentToListBox();
+                AddContentToListBox();
                 return;
             }
-            List<string> list = new List<string>();
-            foreach (Process process in this.processes)
-            {
-                if (process.ProcessName.Length >= length && process.ProcessName.Substring(0, length).ToUpper().Equals(str))
-                {
-                    list.Add(process.ProcessName);
-                }
-            }
-            list = list.Distinct().ToList();
+
+            var process = from p in processes
+                          where p.ProcessName.ToUpper().Contains(TextBox_Search.Text.ToUpper())
+                          select p.ProcessName;
+            var list = process.Distinct().ToList();
             list.Sort();
-            listBox_Processes.DataSource = list;
+            ListBox_Processes.DataSource = list;
         }
 
-        private void MainForm_Load(object sender, System.EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            this.FetchAllProcesses();
-            this.AddContentToListBox();
+            FetchAllProcesses();
+            AddContentToListBox();
         }
 
-        private void button_Refrsh_Click(object sender, System.EventArgs e)
+        private void Button_Refrsh_Click(object sender, EventArgs e)
         {
-            this.FetchAllProcesses();
-            this.AddContentToListBox();
-            textBox_Search.Clear();
+            FetchAllProcesses();
+            AddContentToListBox();
+            TextBox_Search.Clear();
         }
 
-        private void button_Kill_Click(object sender, System.EventArgs e)
+        private void Button_Kill_Click(object sender, EventArgs e)
         {
-            this.KillProcess();
-            this.FetchAllProcesses();
-            this.AddContentToListBox();
-            textBox_Search.Clear();
+            KillProcess();
+            FetchAllProcesses();
+            AddContentToListBox();
+            TextBox_Search.Clear();
         }
 
-        private void textBox_Search_TextChanged(object sender, System.EventArgs e)
+        private void TextBox_Search_TextChanged(object sender, EventArgs e)
         {
-            this.AutoFilter();
+            AutoFilter();
         }
 
-        private void button_Suspend_Click(object sender, EventArgs e)
+        private void Button_Suspend_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Form_SuspendedWindow form_SuspendedWindow = new Form_SuspendedWindow();
-            form_SuspendedWindow.ShowDialog();
-            this.Show();
+            Hide();
+            new Form_SuspendedWindow().ShowDialog();
+            Show();
         }
     }
 }

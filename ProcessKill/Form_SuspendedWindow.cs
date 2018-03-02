@@ -26,7 +26,7 @@ namespace ProcessKill
         {
             if (mouseLeftButton)
             {
-                Point point = Control.MousePosition;
+                Point point = MousePosition;
                 point.Offset(mousePoint.X, mousePoint.Y);
                 Location = point;
             }
@@ -42,7 +42,7 @@ namespace ProcessKill
 
         private void Form_SuspendedWindow_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }
